@@ -15,9 +15,10 @@ public class EditorSnap : MonoBehaviour
     {
         Vector3 snapPosition;
         snapPosition.x = Mathf.RoundToInt(transform.position.x / 10f) * 10f; //Takes position, divides by 10 and rounds the X position to nearest number. 
-        //Example: 6 / 10 = 0.6 (RoundToInt = 1)
-        //Finally: 1 * 10f = 10f.
-        snapPosition.z = 0f;
+                                                                             //Example: 6 / 10 = 0.6 (RoundToInt = 1)
+                                                                             //Finally: 1 * 10f = 10f.
+        snapPosition.z = Mathf.RoundToInt(transform.position.z / 10f) * 10f;
+
         transform.position = new Vector3(snapPosition.x, 0f, snapPosition.z);
     }
 }
