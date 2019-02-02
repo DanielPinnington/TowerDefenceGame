@@ -5,14 +5,15 @@ using UnityEngine;
 public class EditorScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    [ExecuteInEditMode]
+    void Awake()
     {
-        print("Running");
+        Debug.Log("Editor causes this Awake");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("Editor causes this Update");
     }
 }
