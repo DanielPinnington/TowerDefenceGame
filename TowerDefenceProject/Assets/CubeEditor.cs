@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
+[SelectionBase] //Makes it harder to click on surface children, only allows for click on BASE. IE (Cube)
 public class CubeEditor : MonoBehaviour
 {
     [SerializeField] [Range(1f, 20f)] float gridSize = 10f;
+
+    TextMesh textMesh;
 
     void Update()
     {
@@ -14,7 +17,9 @@ public class CubeEditor : MonoBehaviour
                                                                              //Example: 6 / 10 = 0.6 (RoundToInt = 1)
                                                                              //Finally: 1 * 10f = 10f.
         snapPosition.z = Mathf.RoundToInt(transform.position.z / gridSize) * gridSize;
-
         transform.position = new Vector3(snapPosition.x, 0f, snapPosition.z);
+
+        textMesh = GetComponentInChildren<TextMesh>();
+        textMesh.text = snapPosition.x + "," + snapPosition.z; //TextMesh.text == X & Y Positioning of Cube.
     }
 }
