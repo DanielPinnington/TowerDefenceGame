@@ -8,14 +8,18 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PrintAllWayPoints();
+        StartCoroutine(FollowingPath()); //Calls Coroutine method
     }
-    private void PrintAllWayPoints()
+    IEnumerator FollowingPath() //Inumerator == Coroutine
     {
+        print("Starting patrol...");
         foreach(WavePoint waypoint in cubePath)
         {
-            print(waypoint.name);
+            transform.position = waypoint.transform.position; //Every second, move enemy waypoint position, to next cube.
+            print("Visiting: " + waypoint);
+            yield return new WaitForSeconds(1f); //Yield this, and wait for 1 second. Then carry on.
         }
+        print("Ending patrol");
     }
 
     // Update is called once per frame
