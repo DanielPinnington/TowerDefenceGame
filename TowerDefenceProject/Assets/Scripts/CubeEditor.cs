@@ -21,7 +21,7 @@ public class CubeEditor : MonoBehaviour
 
         textMesh = GetComponentInChildren<TextMesh>();
         string labelText = snapPosition.x / gridSize + "," + snapPosition.z / gridSize; //TextMesh.text == X & Y Positioning of Cube.
-        textMesh.text = labelText;
+       // textMesh.text = labelText;
         gameObject.name = labelText;
     }
 }
