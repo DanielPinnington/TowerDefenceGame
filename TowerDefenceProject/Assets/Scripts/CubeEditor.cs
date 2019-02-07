@@ -4,13 +4,13 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 [SelectionBase] //Makes it harder to click on surface children, only allows for click on BASE. IE (Cube)
-[RequireComponent(typeof(WavePoint))]
+[RequireComponent(typeof(Waypoint))]
 public class CubeEditor : MonoBehaviour
 {
-    WavePoint wavepoint;
+    Waypoint waypoint;
     private void Awake()
     {
-        wavepoint = GetComponent<WavePoint>();
+        waypoint = GetComponent<Waypoint>();
     }
     void Update()
     {
@@ -19,14 +19,14 @@ public class CubeEditor : MonoBehaviour
     }
     private void SnapToGrid()
     {
-        int gridSize = wavepoint.getGridSize();
-        transform.position = new Vector3(wavepoint.GetGridPos().x, 0f, wavepoint.GetGridPos().y); //2 Components, x & y.
+        int gridSize = waypoint.getGridSize();
+        transform.position = new Vector3(waypoint.getGridPos().x, 0f, waypoint.getGridPos().y); //2 Components, x & y.
     }
 
     private void UpdateLabel() {
         TextMesh textMesh = GetComponentInChildren<TextMesh>();
-        int gridSize = wavepoint.getGridSize();
-        string labelText = wavepoint.GetGridPos().x / gridSize + "," + wavepoint.GetGridPos().y / gridSize; //TextMesh.text == X & Y Positioning of Cube.
+        int gridSize = waypoint.getGridSize();
+        string labelText = waypoint.getGridPos().x / gridSize + "," + waypoint.getGridPos().y / gridSize; //TextMesh.text == X & Y Positioning of Cube.
        // textMesh.text = labelText;
         gameObject.name = labelText;
     }

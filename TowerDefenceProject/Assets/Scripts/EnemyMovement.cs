@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] List<WavePoint> cubePath; //List instead of Array as it's not a fixed size, more flexibility, easy to use.
+    [SerializeField] List<Waypoint> cubePath; //List instead of Array as it's not a fixed size, more flexibility, easy to use.
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +13,7 @@ public class EnemyMovement : MonoBehaviour
     IEnumerator FollowingPath() //Inumerator == Coroutine
     {
         print("Starting patrol...");
-        foreach(WavePoint waypoint in cubePath)
+        foreach(Waypoint waypoint in cubePath)
         {
             transform.position = waypoint.transform.position; //Every second, move enemy waypoint position, to next cube.
             print("Visiting: " + waypoint);
