@@ -26,8 +26,15 @@ public class PathFinder : MonoBehaviour
         foreach(Vector2Int direction in directions)
         {
             Vector2Int explorationCoordinate = startWayPoint.getGridPos() + direction;
-            grid[explorationCoordinate].SetTopColor(Color.blue); // Check to see if code is working. (need for testing)
-            print("Exploring " + explorationCoordinate);
+
+            try
+            {
+                grid[explorationCoordinate].SetTopColor(Color.blue); // Check to see if code is working. (need for testing)
+            }  //Try-Catch here, incase the co-ordinate block is not in the game, 1,0 for example may not be there so it will cause error.
+            catch //This catch will catch the error and do nothing, preventing possible error messages.
+            {
+                //Do nothing.
+            }
         }
     }
 
