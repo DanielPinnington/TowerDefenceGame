@@ -18,6 +18,17 @@ public class PathFinder : MonoBehaviour
     {
         LoadBlocks();
         ColorStartAndEnd();
+        ExploreNeighbour();
+    }
+
+    private void ExploreNeighbour()
+    {
+        foreach(Vector2Int direction in directions)
+        {
+            Vector2Int explorationCoordinate = startWayPoint.getGridPos() + direction;
+            grid[explorationCoordinate].SetTopColor(Color.blue); // Check to see if code is working. (need for testing)
+            print("Exploring " + explorationCoordinate);
+        }
     }
 
     private void ColorStartAndEnd()
