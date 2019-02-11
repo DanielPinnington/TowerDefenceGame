@@ -69,7 +69,7 @@ public class PathFinder : MonoBehaviour
     private void QueueNewNeighbour(Vector2Int neighbourCoordinates)
     {
         Waypoint neighbour = grid[neighbourCoordinates];
-        if (neighbour.isExplored)
+        if (neighbour.isExplored || queue.Contains(neighbour))
         {
 
         }
