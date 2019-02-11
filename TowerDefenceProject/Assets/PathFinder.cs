@@ -8,7 +8,7 @@ public class PathFinder : MonoBehaviour
     //  Vector2 is a Key, WavePoint is the value. 'grid' is the name.
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
     Queue<Waypoint> queue = new Queue<Waypoint>();
-    bool isRunning = true; //State to check if it's running. Will stop when algorithm stops.
+    [SerializeField] bool isRunning = true; //State to check if it's running. Will stop when algorithm stops.
 
     Vector2Int[] directions = {
         Vector2Int.up, // Up
@@ -21,7 +21,7 @@ public class PathFinder : MonoBehaviour
     {
         LoadBlocks();
         ColorStartAndEnd();
-        ExploreNeighbour();
+        //ExploreNeighbour();
         Pathfind();
     }
 
@@ -32,6 +32,8 @@ public class PathFinder : MonoBehaviour
         {
             var searchCenter = queue.Dequeue();
             HaltIfEnd(searchCenter);
+            ExploreNeighbour(searchCenter);
+            searchCenter.isExplored = true;
             //explore neighbours
         }
     }
@@ -44,7 +46,7 @@ public class PathFinder : MonoBehaviour
         }
     }
 
-    private void ExploreNeighbour()
+    private void ExploreNeighbour(Waypoint from)
     {
         if (!isRunning)
         {
@@ -52,16 +54,30 @@ public class PathFinder : MonoBehaviour
         }
         foreach(Vector2Int direction in directions)
         {
-            Vector2Int explorationCoordinate = startWayPoint.getGridPos() + direction;
+            Vector2Int neighbourCoordinates = from.getGridPos() + direction;
 
             try
             {
-                grid[explorationCoordinate].SetTopColor(Color.blue); // Check to see if code is working. (need for testing)
+                QueueNewNeighbour(neighbourCoordinates);
             }  //Try-Catch here, incase the co-ordinate block is not in the game, 1,0 for example may not be there so it will cause error.
             catch //This catch will catch the error and do nothing, preventing possible error messages.
             {
                 //Do nothing.
             }
+        }
+    }
+    private void QueueNewNeighbour(Vector2Int neighbourCoordinates)
+    {
+        Waypoint neighbour = grid[neighbourCoordinates];
+        if (neighbour.isExplored)
+        {
+
+        }
+        else
+        {
+            neighbour.SetTopColor(Color.blue);  // Check to see if code is working. (need for testing)
+            queue.Enqueue(neighbour);
+            print("Queueing " + neighbour);
         }
     }
 
