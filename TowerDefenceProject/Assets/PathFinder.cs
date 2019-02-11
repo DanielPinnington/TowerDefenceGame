@@ -7,6 +7,9 @@ public class PathFinder : MonoBehaviour
     [SerializeField] Waypoint startWayPoint, endWayPoint; //Allows start and end waypoints, set in 'world'.
     //  Vector2 is a Key, WavePoint is the value. 'grid' is the name.
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
+    Queue<Waypoint> queue = new Queue<Waypoint>();
+    bool isRunning = true; //State to check if it's running. Will stop when algorithm stops.
+
     Vector2Int[] directions = {
         Vector2Int.up, // Up
         Vector2Int.right, //Right
@@ -19,10 +22,34 @@ public class PathFinder : MonoBehaviour
         LoadBlocks();
         ColorStartAndEnd();
         ExploreNeighbour();
+        Pathfind();
+    }
+
+    private void Pathfind() //Queue 
+    {
+        queue.Enqueue(startWayPoint);
+        while (queue.Count > 0 && isRunning) //isrunning to stop infinite loop
+        {
+            var searchCenter = queue.Dequeue();
+            HaltIfEnd(searchCenter);
+            //explore neighbours
+        }
+    }
+    private void HaltIfEnd(Waypoint searchCenter)
+    {
+        if(searchCenter == endWayPoint)
+        {
+            print("Searching from end node, therefore stopping!");
+            isRunning = false;
+        }
     }
 
     private void ExploreNeighbour()
     {
+        if (!isRunning)
+        {
+            return;
+        }
         foreach(Vector2Int direction in directions)
         {
             Vector2Int explorationCoordinate = startWayPoint.getGridPos() + direction;
