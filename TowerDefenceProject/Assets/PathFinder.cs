@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PathFinder : MonoBehaviour
-{
-    [SerializeField] Waypoint startWayPoint, endWayPoint; //Allows start and end waypoints, set in 'world'.
+{   
+    //Allows start and end waypoints, set in 'world'.
     //  Vector2 is a Key, WavePoint is the value. 'grid' is the name.
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
     Queue<Waypoint> queue = new Queue<Waypoint>();
     [SerializeField] bool isRunning = true; //State to check if it's running. Will stop when algorithm stops.
+    Waypoint searchCenter; //current searchCenter
+    public Waypoint startWayPoint, endWayPoint;
+    private List<Waypoint> path = new List<Waypoint>(); //make private later
 
     Vector2Int[] directions = {
         Vector2Int.up, // Up
@@ -17,27 +20,46 @@ public class PathFinder : MonoBehaviour
         Vector2Int.left //Left
     };
 
-    void Start()
+    public List<Waypoint> GetPath()
     {
         LoadBlocks();
         ColorStartAndEnd();
         //ExploreNeighbour();
-        Pathfind();
+        BreadthFirstSearch();
+        CreatePath();
+        return path;
     }
 
-    private void Pathfind() //Queue 
+    private void CreatePath()
+    {
+        path.Add(endWayPoint);
+
+        Waypoint previous = endWayPoint.exploredFrom;
+        while(previous != startWayPoint)
+        {
+            //add intermediate waypoints
+            path.Add(previous);
+            previous = previous.exploredFrom; //moving backwards through list
+        }
+        path.Add(startWayPoint);
+        //add startwaypoint 
+        path.Reverse();
+        //reverse list
+    }
+
+    private void BreadthFirstSearch() //Queue 
     {
         queue.Enqueue(startWayPoint);
         while (queue.Count > 0 && isRunning) //isrunning to stop infinite loop
         {
-            var searchCenter = queue.Dequeue();
-            HaltIfEnd(searchCenter);
-            ExploreNeighbour(searchCenter);
+            searchCenter = queue.Dequeue();
+            HaltIfEnd();
+            ExploreNeighbour();
             searchCenter.isExplored = true;
             //explore neighbours
         }
     }
-    private void HaltIfEnd(Waypoint searchCenter)
+    private void HaltIfEnd()
     {
         if(searchCenter == endWayPoint)
         {
@@ -46,7 +68,7 @@ public class PathFinder : MonoBehaviour
         }
     }
 
-    private void ExploreNeighbour(Waypoint from)
+    private void ExploreNeighbour()
     {
         if (!isRunning)
         {
@@ -54,8 +76,8 @@ public class PathFinder : MonoBehaviour
         }
         foreach(Vector2Int direction in directions)
         {
-            Vector2Int neighbourCoordinates = from.getGridPos() + direction;
-
+            Vector2Int neighbourCoordinates = searchCenter.getGridPos() + direction;
+            //if(grid.ContainsKey(neighbourCoordinates)) //This could be done aswell instead of try/catch
             try
             {
                 QueueNewNeighbour(neighbourCoordinates);
@@ -77,6 +99,7 @@ public class PathFinder : MonoBehaviour
         {
             neighbour.SetTopColor(Color.blue);  // Check to see if code is working. (need for testing)
             queue.Enqueue(neighbour);
+            neighbour.exploredFrom = searchCenter;
             print("Queueing " + neighbour);
         }
     }
