@@ -18,7 +18,7 @@ public class CubeEditor : MonoBehaviour
         SnapToGrid();
         UpdateLabel();
     }
-    private void SnapToGrid()
+    private void SnapToGrid() //private later
     {
         int gridSize = waypoint.getGridSize();
         transform.position = new Vector3(waypoint.getGridPos().x * gridSize, 0f, waypoint.getGridPos().y * gridSize); //2 Components, x & y.
