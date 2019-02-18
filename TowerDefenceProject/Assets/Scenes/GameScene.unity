@@ -416,7 +416,7 @@ PrefabInstance:
       objectReference: {fileID: 1725293819}
     - target: {fileID: 1191172639, guid: 8bef608a7be5e0b4bb3727c4e5beca64, type: 3}
       propertyPath: attackRange
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1344009910, guid: 8bef608a7be5e0b4bb3727c4e5beca64, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1074,6 +1074,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1195692281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195692276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd41297b5caf5e1439e110896dda7444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsBetweenSpawns: 2
+  enemyPrefab: {fileID: 1195692277}
 --- !u!1001 &1318626047
 PrefabInstance:
   m_ObjectHideFlags: 0
