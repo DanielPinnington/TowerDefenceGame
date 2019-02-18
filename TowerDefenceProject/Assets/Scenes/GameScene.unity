@@ -410,6 +410,14 @@ PrefabInstance:
       propertyPath: targetEnemy
       value: 
       objectReference: {fileID: 1195692278}
+    - target: {fileID: 1191172639, guid: 8bef608a7be5e0b4bb3727c4e5beca64, type: 3}
+      propertyPath: projectileParticle
+      value: 
+      objectReference: {fileID: 1725293819}
+    - target: {fileID: 1191172639, guid: 8bef608a7be5e0b4bb3727c4e5beca64, type: 3}
+      propertyPath: attackRange
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1344009910, guid: 8bef608a7be5e0b4bb3727c4e5beca64, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1049,6 +1057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21bc6d3ae82f3d4293b07e2e8ba77f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPoints: 10
 --- !u!54 &1195692280
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1444,7 +1453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702555579}
   m_LocalRotation: {x: -0.42519802, y: 0.13381718, z: 0.06494754, w: 0.89279425}
-  m_LocalPosition: {x: 4.9973874, y: -24.18904, z: -4.258834}
+  m_LocalPosition: {x: 3.117043, y: -32.137897, z: -10.426632}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

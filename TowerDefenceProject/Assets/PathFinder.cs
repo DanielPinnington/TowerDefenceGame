@@ -22,14 +22,21 @@ public class PathFinder : MonoBehaviour
 
     public List<Waypoint> GetPath()
     {
+        if (path.Count == 0)
+        {
+            CalcPath();
+        }
+            return path;
+    }
+
+    private void CalcPath()
+    {
         LoadBlocks();
         ColorStartAndEnd();
         //ExploreNeighbour();
         BreadthFirstSearch();
         CreatePath();
-        return path;
     }
-
     private void CreatePath()
     {
         path.Add(endWayPoint);
