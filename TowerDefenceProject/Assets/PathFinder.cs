@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathFinder : MonoBehaviour
+public class Pathfinder : MonoBehaviour
 {   
     //Allows start and end waypoints, set in 'world'.
     //  Vector2 is a Key, WavePoint is the value. 'grid' is the name.
@@ -39,19 +39,24 @@ public class PathFinder : MonoBehaviour
     }
     private void CreatePath()
     {
-        path.Add(endWayPoint);
-
+        SetAsPath(endWayPoint);
         Waypoint previous = endWayPoint.exploredFrom;
         while(previous != startWayPoint)
         {
             //add intermediate waypoints
-            path.Add(previous);
-            previous = previous.exploredFrom; //moving backwards through list
+            previous = previous.exploredFrom; // isPlaceable = false, can't place blocks on previous.
+            SetAsPath(previous); //moving backwards through list
         }
-        path.Add(startWayPoint);
+        SetAsPath(startWayPoint);
         //add startwaypoint 
         path.Reverse();
         //reverse list
+    }
+
+    private void SetAsPath(Waypoint waypoint)
+    {
+        path.Add(waypoint);
+        waypoint.isPlaceable = false;
     }
 
     private void BreadthFirstSearch() //Queue 

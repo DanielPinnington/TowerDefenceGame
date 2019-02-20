@@ -8,6 +8,7 @@ public class Waypoint : MonoBehaviour
     public bool isExplored = false;
     public Waypoint exploredFrom;
     Vector2Int gridPos;
+    public bool isPlaceable = true; //Is block placeable?
 
     const int gridSize = 10;
 
@@ -36,7 +37,7 @@ public class Waypoint : MonoBehaviour
     }
     private void UpdateColor()
     {
-        PathFinder pathfinder = GetComponentInParent<PathFinder>();
+        Pathfinder pathfinder = GetComponentInParent<Pathfinder>();
 
         if (isExplored && this != pathfinder.startWayPoint && this != pathfinder.endWayPoint)
         {
@@ -51,4 +52,21 @@ public class Waypoint : MonoBehaviour
             SetTopColor(Color.blue);
         }
     }
+
+    void OnMouseOver() //Where is the mouse on screen ?
+    {
+        if (Input.GetMouseButtonDown(0)) //Left click
+        {
+            if (isPlaceable)
+            {
+                print("Tower Placement: " + gameObject.name);
+            }
+            else
+            {
+                print("Can't place it here");
+            }
+        }
+     //   print(gameObject.name); //Mouse over "gameObject" in this case, cubes/enemies + their name.
+    }
+    
 }

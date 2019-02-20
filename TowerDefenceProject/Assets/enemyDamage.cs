@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyDamage : MonoBehaviour
+public class EnemyDamage : MonoBehaviour
 {
     [SerializeField] int hitPoints = 10;
     // Start is called before the first frame update
