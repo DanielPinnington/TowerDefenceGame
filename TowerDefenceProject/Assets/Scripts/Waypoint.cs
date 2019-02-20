@@ -9,12 +9,12 @@ public class Waypoint : MonoBehaviour
     public Waypoint exploredFrom;
     Vector2Int gridPos;
     public bool isPlaceable = true; //Is block placeable?
-
     const int gridSize = 10;
+
+    [SerializeField] TowerPan towerPrefab;
 
     public void Update()
     {
-        UpdateColor();
     }
 
     public int getGridSize()
@@ -35,23 +35,6 @@ public class Waypoint : MonoBehaviour
         topMeshRender.material.color = color;
 
     }
-    private void UpdateColor()
-    {
-        Pathfinder pathfinder = GetComponentInParent<Pathfinder>();
-
-        if (isExplored && this != pathfinder.startWayPoint && this != pathfinder.endWayPoint)
-        {
-            SetTopColor(Color.yellow);
-        }
-        else if (this == pathfinder.startWayPoint)
-        {
-            SetTopColor(Color.green);
-        }
-        else if (this == pathfinder.endWayPoint)
-        {
-            SetTopColor(Color.blue);
-        }
-    }
 
     void OnMouseOver() //Where is the mouse on screen ?
     {
@@ -59,7 +42,8 @@ public class Waypoint : MonoBehaviour
         {
             if (isPlaceable)
             {
-                print("Tower Placement: " + gameObject.name);
+                Instantiate(towerPrefab, transform.position, Quaternion.identity);
+                isPlaceable = false;
             }
             else
             {

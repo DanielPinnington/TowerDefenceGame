@@ -32,7 +32,6 @@ public class Pathfinder : MonoBehaviour
     private void CalcPath()
     {
         LoadBlocks();
-        ColorStartAndEnd();
         //ExploreNeighbour();
         BreadthFirstSearch();
         CreatePath();
@@ -116,11 +115,6 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-    private void ColorStartAndEnd()
-    {
-        startWayPoint.SetTopColor(Color.cyan);
-        endWayPoint.SetTopColor(Color.green);
-    }
     private void LoadBlocks()
     {
         var waypoints = FindObjectsOfType<Waypoint>(); //World of Cubes (waypoint) loading into dictionairy (co-ordinates)
