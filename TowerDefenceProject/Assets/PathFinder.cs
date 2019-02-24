@@ -108,7 +108,7 @@ public class Pathfinder : MonoBehaviour
         }
         else
         {
-            neighbour.SetTopColor(Color.blue);  // Check to see if code is working. (need for testing)
+            //neighbour.SetTopColor(Color.blue);  // Check to see if code is working. (need for testing)
             queue.Enqueue(neighbour);
             neighbour.exploredFrom = searchCenter;
             print("Queueing " + neighbour);

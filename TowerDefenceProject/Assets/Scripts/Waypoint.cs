@@ -12,6 +12,7 @@ public class Waypoint : MonoBehaviour
     const int gridSize = 10;
 
     [SerializeField] TowerPan towerPrefab;
+    const string towerParentName = "Towers";
 
     public void Update()
     {
@@ -27,13 +28,6 @@ public class Waypoint : MonoBehaviour
         return new Vector2Int(
             Mathf.RoundToInt(transform.position.x / gridSize),
             Mathf.RoundToInt(transform.position.z / gridSize));
-    }
-
-    public void SetTopColor(Color color)
-    {
-        MeshRenderer topMeshRender = transform.GetComponent<MeshRenderer>();
-        topMeshRender.material.color = color;
-
     }
 
     void OnMouseOver() //Where is the mouse on screen ?
