@@ -43,8 +43,8 @@ public class Pathfinder : MonoBehaviour
         while(previous != startWayPoint)
         {
             //add intermediate waypoints
-            previous = previous.exploredFrom; // isPlaceable = false, can't place blocks on previous.
             SetAsPath(previous); //moving backwards through list
+            previous = previous.exploredFrom; // isPlaceable = false, can't place blocks on previous.
         }
         SetAsPath(startWayPoint);
         //add startwaypoint 

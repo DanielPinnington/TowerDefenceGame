@@ -5,10 +5,10 @@ using UnityEngine;
 public class FlexibleCamera : MonoBehaviour
 {
     // Start is called before the first frame update
-    float mainSpeed = 50.0f; //regular speed
-    float shiftAdd = 125.0f; //multiplied by how long shift is held.  Basically running
-    float maxShift = 500.0f; //Maximum speed when holdin gshift
-    float camSens = 0.25f; //How sensitive it with mouse
+    float mainSpeed = 5.0f; //regular speed
+    float shiftAdd = 25.0f; //multiplied by how long shift is held.  Basically running
+    float maxShift = 50.0f; //Maximum speed when holdin gshift
+    float camSens = 0.2f; //How sensitive it with mouse
     private Vector3 lastMouse = new Vector3(255, 255, 255); //kind of in the middle of the screen, rather than at the top (play)
     private float totalRun = 1.0f;
 
@@ -20,7 +20,6 @@ public class FlexibleCamera : MonoBehaviour
         transform.eulerAngles = lastMouse;
         lastMouse = Input.mousePosition;
         //Mouse  camera angle done.  
-
         //Keyboard commands
         float f = 0.0f;
         Vector3 p = GetBaseInput();

@@ -28,7 +28,7 @@ public class CubeEditor : MonoBehaviour
         TextMesh textMesh = GetComponentInChildren<TextMesh>();
         int gridSize = waypoint.getGridSize();
         string labelText = waypoint.getGridPos().x + "," + waypoint.getGridPos().y; //TextMesh.text == X & Y Positioning of Cube.
-       // textMesh.text = labelText;
+       // textMesh.text = labelText
         gameObject.name = labelText;
     }
 }
