@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
-{
+{   
     public GameObject FloatingText;
     [SerializeField] int hitPoints = 10;
-
+    [SerializeField] ParticleSystem hitParticlePrefabs;
+    [SerializeField] ParticleSystem deathParticlePrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,7 @@ public class EnemyDamage : MonoBehaviour
         }
 
         hitPoints = hitPoints - 1;
+        //hitParticlePrefabs.Play();
     }
 
     void ShowFloatingText()
@@ -39,7 +41,11 @@ public class EnemyDamage : MonoBehaviour
     }
     private void KillEnemy()
     {
-        Destroy(gameObject);
+        var delay = 0.5f; //Delay of 2 seconds
+        var deathParticle = Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
+        deathParticlePrefab.Play();
+        Destroy(deathParticle);
+        Destroy(gameObject, delay);
         print("Enemy Destroyed");
     }
 }
