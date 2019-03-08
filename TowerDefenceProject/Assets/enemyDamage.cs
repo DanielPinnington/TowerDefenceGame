@@ -6,6 +6,8 @@ public class EnemyDamage : MonoBehaviour
 {   
     public GameObject FloatingText;
     [SerializeField] int hitPoints = 10;
+    [SerializeField] int scoreTotal = 0;
+    [SerializeField] int scoreKill = 10;
     [SerializeField] ParticleSystem hitParticlePrefabs;
     [SerializeField] ParticleSystem deathParticlePrefab;
     // Start is called before the first frame update
@@ -21,6 +23,10 @@ public class EnemyDamage : MonoBehaviour
         {
             KillEnemy();
         }
+    }
+    void EnemyKill()
+    {
+        scoreTotal = scoreTotal + 10;
     }
 
     void EnemyHit()
@@ -41,11 +47,11 @@ public class EnemyDamage : MonoBehaviour
     }
     private void KillEnemy()
     {
-        var delay = 0.5f; //Delay of 2 seconds
+        var delay = 1f; //Delay of 2 seconds
         var deathParticle = Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
         deathParticlePrefab.Play();
-        Destroy(deathParticle);
-        Destroy(gameObject, delay);
-        print("Enemy Destroyed");
+        Destroy(gameObject);
+        EnemyKill();
+        Destroy(deathParticle.gameObject, delay);
     }
 }

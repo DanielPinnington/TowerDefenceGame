@@ -62,6 +62,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae326eafd147c9b4d8afe6ed35a80b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementPeriod: 0.5
+  goalParticle: {fileID: 0}
 --- !u!114 &1195692279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +79,8 @@ MonoBehaviour:
   FloatingText: {fileID: 3438359518267129802, guid: 97379a0e8ffb9cb49bdfa7bad08cdef5,
     type: 3}
   hitPoints: 10
+  scoreTotal: 0
+  scoreKill: 10
   hitParticlePrefabs: {fileID: 0}
   deathParticlePrefab: {fileID: 19800014, guid: 4be461bdf6702f64298fb518ce64cc1d,
     type: 3}
