@@ -8,12 +8,11 @@ public class TowerFactory : MonoBehaviour
     [SerializeField] TowerPan towerPrefab;
     [SerializeField] int towerLimit = 10;
     [SerializeField] Transform towerParentTransform;
-
     Queue<TowerPan> towerQueue = new Queue<TowerPan>();
     // Start is called before the first frame update
 
     public void AddTower(Waypoint baseWaypoint)
-    {
+    {     
         int noOfTowers = towerQueue.Count;
 
         if (noOfTowers < towerLimit)
