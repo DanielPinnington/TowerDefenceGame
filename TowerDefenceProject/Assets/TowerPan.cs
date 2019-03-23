@@ -12,7 +12,7 @@ public class TowerPan : MonoBehaviour
 
     public Waypoint baseWaypoint; //
     // State of each tower
-    Transform targetEnemy;
+    [SerializeField] Transform targetEnemy;
 
     // Update is called once per frame
     void Update()
@@ -21,11 +21,11 @@ public class TowerPan : MonoBehaviour
         if (targetEnemy)
         {
             objectToPan.LookAt(targetEnemy);
-        //    FireAtEnemy();
+            FireAtEnemy();
         }
         else
         {
-     //       Shoot(false);
+            Shoot(false);
         }
     }
     private void SetTargetEnemy()
@@ -60,22 +60,22 @@ public class TowerPan : MonoBehaviour
         return transformB;
     }
 
-   // private void FireAtEnemy()
-  //  {
-    //    float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position, gameObject.transform.position);
-    //    if (distanceToEnemy <= attackRange)
-     //   {
-     //       Shoot(true);
-    // //   }
-   //     else
-    //    {
-    //        Shoot(false);
-    //    }
-  //  }
+   private void FireAtEnemy()
+   {
+      float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position, gameObject.transform.position);
+       if (distanceToEnemy <= attackRange)
+       {
+           Shoot(true);
+      }
+       else
+       {
+           Shoot(false);
+        }
+    }
 
-  //  private void Shoot(bool isActive)
-   // {
-    //    var emissionModule = projectileParticle.emission;
-   //     emissionModule.enabled = isActive;
-  //  }
+    private void Shoot(bool isActive)
+    {
+       var emissionModule = projectileParticle.emission;
+        emissionModule.enabled = isActive;
+    }
 }

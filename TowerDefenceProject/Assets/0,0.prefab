@@ -108,7 +108,6 @@ MonoBehaviour:
   isExplored: 0
   exploredFrom: {fileID: 0}
   isPlaceable: 0
-  towerPrefab: {fileID: 0}
 --- !u!65 &5142180348250881395
 BoxCollider:
   m_ObjectHideFlags: 0

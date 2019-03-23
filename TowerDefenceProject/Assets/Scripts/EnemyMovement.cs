@@ -23,14 +23,15 @@ public class EnemyMovement : MonoBehaviour
             transform.position = waypoint.transform.position;
             yield return new WaitForSeconds(movementPeriod);
         }
+        ExplodeEnemy();
         print("hitTower");
     }
     private void ExplodeEnemy()
     {
-        var delay = 1.2f; //Delay of 2 seconds
-        var deathParticle = Instantiate(goalParticle, transform.position, Quaternion.identity);
-        deathParticle.Play();
-        Destroy(deathParticle.gameObject, delay);
+       // var delay = 1.2f; //Delay of 2 seconds
+       // var deathParticle = Instantiate(goalParticle, transform.position, Quaternion.identity);
+       // deathParticle.Play();
+       // Destroy(deathParticle.gameObject, delay);
         Destroy(gameObject);
         print("Enemy Destroyed");
     }
