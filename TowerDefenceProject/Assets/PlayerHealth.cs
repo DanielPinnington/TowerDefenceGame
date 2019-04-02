@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int health = 100;
     [SerializeField] int healthDecrease = 5;
     [SerializeField] Text healthText;
     [SerializeField] AudioClip playerDamagedSound;
+
+    enum State {Alive, Dead}
+    State state = State.Alive;
 
     // Start is called before the first frame update
 
@@ -23,6 +27,11 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            LoadNextScene();
         }
+    }
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(1);
     }
 }

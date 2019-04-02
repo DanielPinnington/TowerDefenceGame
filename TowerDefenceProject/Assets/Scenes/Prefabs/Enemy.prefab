@@ -64,6 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementPeriod: 0.1
   goalParticle: {fileID: 0}
+  maxSteps: 40
 --- !u!114 &1195692279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +85,8 @@ MonoBehaviour:
   hitParticlePrefabs: {fileID: 0}
   deathParticlePrefab: {fileID: 19800014, guid: 4be461bdf6702f64298fb518ce64cc1d,
     type: 3}
+  enemyHitSound: {fileID: 0}
+  enemyDeathSound: {fileID: 0}
 --- !u!1 &8948906801058677740
 GameObject:
   m_ObjectHideFlags: 0

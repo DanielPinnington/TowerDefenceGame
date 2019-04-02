@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float movementPeriod = .5f;
     [SerializeField] ParticleSystem goalParticle;
+    float maxSteps;
+    //[SerializeField] float maxSteps;
     // Use this for initialization
     void Start()
     {
@@ -18,13 +21,35 @@ public class EnemyMovement : MonoBehaviour
     IEnumerator FollowPath(List<Waypoint> path)
     {
         print("Starting patrol...");
-        foreach (Waypoint waypoint in path)
+
+        foreach (Waypoint step in path)
         {
-            transform.position = waypoint.transform.position;
-            yield return new WaitForSeconds(movementPeriod);
+            int i = 0;
+            float maxSteps = Random.Range(20.0f, 40.0f);
+
+            float stepStageDist = Vector3.Distance(transform.position, step.transform.position) / maxSteps;
+
+            WaitForSeconds wFSDelay = new WaitForSeconds(movementPeriod / maxSteps);
+
+            while (i < maxSteps)
+            {
+                i++;
+
+                transform.position = Vector3.MoveTowards(transform.position, step.transform.position, stepStageDist);
+
+                yield return wFSDelay;
+            }
         }
-        ExplodeEnemy();
-        print("hitTower");
+
+
+
+        //  foreach (Waypoint waypoint in path)
+        // {
+        //    transform.position = waypoint.transform.position;
+        //    yield return new WaitForSeconds(movementPeriod);
+        // }
+        // ExplodeEnemy();
+        // print("hitTower");
     }
     private void ExplodeEnemy()
     {

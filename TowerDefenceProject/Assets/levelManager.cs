@@ -6,14 +6,18 @@ using UnityEngine.SceneManagement;
 public class levelManager : MonoBehaviour
 {
 
-    void Start()
+
+    private void Awake()
     {
-        
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
+    private void Start()
+    {
+     //   Invoke("LoadGameScene", 2f);
+    }
     void Update()
     {
-        
+        SceneManager.LoadScene(2);
     }
 }
