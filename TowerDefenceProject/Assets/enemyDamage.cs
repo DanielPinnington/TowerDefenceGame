@@ -10,10 +10,14 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] int scoreKill = 10;
     [SerializeField] ParticleSystem hitParticlePrefabs;
     [SerializeField] ParticleSystem deathParticlePrefab;
+    [SerializeField] AudioClip enemyHitSound;
+    [SerializeField] AudioClip enemyDeathSound;
+
+    AudioSource myAudio;
     // Start is called before the first frame update
     void Start()
     {
-
+        myAudio = GetComponent<AudioSource>();
     } 
 
     private void OnParticleCollision(GameObject other)
@@ -37,6 +41,7 @@ public class EnemyDamage : MonoBehaviour
         }
 
         hitPoints = hitPoints - 1;
+        myAudio.PlayOneShot(enemyHitSound);
         //hitParticlePrefabs.Play();
     }
 
@@ -53,5 +58,7 @@ public class EnemyDamage : MonoBehaviour
         Destroy(gameObject);
         EnemyKill();
         Destroy(deathParticle.gameObject, delay);
+        //AudioSource.PlayClipAtPoint(enemyDeathSound, transform.position);
+        AudioSource.PlayClipAtPoint(enemyDeathSound, Camera.main.transform.position);
     }
 }
