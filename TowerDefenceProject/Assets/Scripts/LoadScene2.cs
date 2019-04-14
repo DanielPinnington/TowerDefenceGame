@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class levelManager : MonoBehaviour
+public class LoadScene2 : MonoBehaviour
 {
-
-
+    // Start is called before the first frame update
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
     }
-
-    private void Start()
+    void Start()
     {
-     //   Invoke("LoadGameScene", 2f);
+        Invoke("LoadSecondScene", 2f);
     }
-    void Update()
+
+    // Update is called once per frame
+    void LoadSecondScene()
     {
         SceneManager.LoadScene(2);
     }

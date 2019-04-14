@@ -32,6 +32,6 @@ public class PlayerHealth : MonoBehaviour
     }
     private void LoadNextScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 }

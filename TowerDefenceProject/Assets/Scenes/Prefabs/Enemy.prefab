@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4763445182294758604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4508912771769164646}
@@ -64,7 +64,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementPeriod: 0.1
   goalParticle: {fileID: 0}
-  maxSteps: 40
 --- !u!114 &1195692279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FloatingText: {fileID: 3438359518267129802, guid: 97379a0e8ffb9cb49bdfa7bad08cdef5,
     type: 3}
+  collisionMesh: {fileID: 0}
   hitPoints: 10
   scoreTotal: 0
   scoreKill: 10
@@ -86,7 +86,7 @@ MonoBehaviour:
   deathParticlePrefab: {fileID: 19800014, guid: 4be461bdf6702f64298fb518ce64cc1d,
     type: 3}
   enemyHitSound: {fileID: 0}
-  enemyDeathSound: {fileID: 0}
+  enemyDeathSound: {fileID: 8300000, guid: 03e3bd08a6e70684dbe299a3e185fdd2, type: 3}
 --- !u!1 &8948906801058677740
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,10 +176,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.5157875
+  m_Height: 2.8736138
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.4368069, z: -0.015787506}
 --- !u!65 &632955877
 BoxCollider:
   m_ObjectHideFlags: 0

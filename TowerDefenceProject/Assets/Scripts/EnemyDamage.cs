@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyDamage : MonoBehaviour
 {   
     public GameObject FloatingText;
+    [SerializeField] Collider collisionMesh;
     [SerializeField] int hitPoints = 10;
     [SerializeField] int scoreTotal = 0;
     [SerializeField] int scoreKill = 10;
@@ -35,12 +36,12 @@ public class EnemyDamage : MonoBehaviour
 
     void EnemyHit()
     {
-        if (FloatingText && hitPoints > 0)
-        {
-            ShowFloatingText();
-        }
+        //if (FloatingText && hitPoints > 0)
+       // {
+       //     ShowFloatingText();
+      //  }
 
-        hitPoints = hitPoints - 1;
+        hitPoints = hitPoints - 2;
         myAudio.PlayOneShot(enemyHitSound);
         //hitParticlePrefabs.Play();
     }
