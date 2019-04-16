@@ -18,4 +18,8 @@ public class levelManager : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+    public void changeMenuScreen(string scenename)
+    {
+       SceneManager.LoadScene(scenename);
+    }
 }

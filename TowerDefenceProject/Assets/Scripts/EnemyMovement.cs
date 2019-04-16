@@ -40,6 +40,7 @@ public class EnemyMovement : MonoBehaviour
                 yield return wFSDelay;
             }
         }
+        ExplodeEnemy();
 
 
 
@@ -53,10 +54,10 @@ public class EnemyMovement : MonoBehaviour
     }
     private void ExplodeEnemy()
     {
-       // var delay = 1.2f; //Delay of 2 seconds
-       // var deathParticle = Instantiate(goalParticle, transform.position, Quaternion.identity);
-       // deathParticle.Play();
-       // Destroy(deathParticle.gameObject, delay);
+        var delay = 1.2f; //Delay of 2 seconds
+        var deathParticle = Instantiate(goalParticle, transform.position, Quaternion.identity);
+        deathParticle.Play();
+        Destroy(deathParticle.gameObject, delay);
         Destroy(gameObject);
         print("Enemy Destroyed");
     }

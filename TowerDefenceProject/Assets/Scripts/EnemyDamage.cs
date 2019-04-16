@@ -6,7 +6,7 @@ public class EnemyDamage : MonoBehaviour
 {   
     public GameObject FloatingText;
     [SerializeField] Collider collisionMesh;
-    [SerializeField] int hitPoints = 10;
+    [SerializeField] int hitPoints = 20;
     [SerializeField] int scoreTotal = 0;
     [SerializeField] int scoreKill = 10;
     [SerializeField] ParticleSystem hitParticlePrefabs;

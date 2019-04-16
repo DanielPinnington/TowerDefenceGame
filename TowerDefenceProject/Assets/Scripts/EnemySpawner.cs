@@ -13,10 +13,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Text spawnedEnemies;
     [SerializeField] AudioClip spawnedEnemySound;
     int score;
+    int totalEnemies = 20;
 
     // Use this for initialization
     void Start()
     {
+        
         StartCoroutine(RepeatedlySpawnEnemies());
         spawnedEnemies.text = "Enemies: " + score.ToString();
     }
@@ -26,10 +28,20 @@ public class EnemySpawner : MonoBehaviour
         while (true) // f
             {
             addScore();
-            GetComponent<AudioSource>().PlayOneShot(spawnedEnemySound);
-            var newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-                newEnemy.transform.parent = enemyParentTransform;
-                yield return new WaitForSeconds(secondsBetweenSpawns);
+            {
+                if (totalEnemies >= 0)
+                {
+                    GetComponent<AudioSource>().PlayOneShot(spawnedEnemySound);
+                    var newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+                    newEnemy.transform.parent = enemyParentTransform;
+                    yield return new WaitForSeconds(secondsBetweenSpawns);
+                    totalEnemies = totalEnemies - 1;
+                }
+                else
+                {
+                    yield break;
+                }
+            }
         }
     }
     private void addScore()
