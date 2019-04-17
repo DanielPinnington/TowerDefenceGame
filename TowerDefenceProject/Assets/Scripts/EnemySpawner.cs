@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     {
         
         StartCoroutine(RepeatedlySpawnEnemies());
-        spawnedEnemies.text = "Enemies: " + score.ToString();
+        spawnedEnemies.text = "Enemies: " + totalEnemies.ToString();
     }
 
     IEnumerator RepeatedlySpawnEnemies()
@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
             {
             addScore();
             {
-                if (totalEnemies >= 0)
+                if (totalEnemies > 0)
                 {
                     GetComponent<AudioSource>().PlayOneShot(spawnedEnemySound);
                     var newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
@@ -46,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void addScore()
     {
-        score++;
-        spawnedEnemies.text = "Enemies: " + score.ToString();
+        score--;
+        spawnedEnemies.text = "Enemies: " + totalEnemies.ToString();
     }
 }
